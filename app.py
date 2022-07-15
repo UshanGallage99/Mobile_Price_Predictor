@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect,session
 import pyrebase
 from requests import session
 import pickle
+import numpy as np
 
 app = Flask(__name__)
 
@@ -93,7 +94,8 @@ def home():
         traverse_list(brand_list, brand)
         traverse_list(model_list, model)
 
-        pred_value = prediction(feature_list) 
+        pred_value = prediction(feature_list)
+        pred_value = np.round(pred_value[0],2) 
         saveData(memory,storage,brand,model,new,used)
     return render_template("index.html",pred_value=pred_value)
 
