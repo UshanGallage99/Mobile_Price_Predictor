@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <title>Price Predictor</title>
+</head>
+<body> 
+    <div class="wrapper">
+        <div class="title">Mobile Phone Price Predictor</div>
+        <form action="/home" method="POST">
+            <div class="form">
+                <div class="inputfield">
+                    <label for="memory">Memory</label>
+                    <input class="input" type="text" name="memory" required>
+                </div>
+                <div class="inputfield">
+                    <label for="storage">Storage</label>
+                    <input class="input" type="text" name="storage" required>
+                </div>
+                <div class="inputfield">
+                    <label for="brand">Brand</label>
+                    <div class = "custom_select">
+                        <select name="brand" id="brand">
+                            <option value="" selected hidden>Select</option>
+                            <option value="apple">Apple</option>
+                            <option value="samsung">Samsung</option>
+                            <option value="nokia">Nokia</option>
+                            <option value="oppo">OPPO</option>
+                            <option value="xiaomi">Xiaomi</option>
+                            <option value="realme">Realme</option>
+                            <option value="other">Other</option> 
+                        </select>
+                    </div>
+                </div>
+                <div class="inputfield">
+                    <label for="model">Model</label>
+                    <div class = "custom_select">
+                        <select name="model" id="model">
+                            <option value="" selected hidden>Select</option>
+                            <option value="13">iPhone 13</option> 
+                            <option value="12">iPhone 12</option>
+                            <option value="11">iPhone 11</option>
+                            <option value="XS">iPhone XS</option>
+                            <option value="XR">iPhone XR</option>
+                            <option value="X">iPhone X</option>
+                            <option value="8">iPhone 8</option>
+                            <option value="SE">iPhone SE</option>
+                            <option value="7">iPhone 7</option>
+                            <option value="6s">iPhone 6s</option>
+                            <option value="6">iPhone 6</option>
+                            <option value="5s">iPhone 5s</option>
+                            <option value="5">iPhone 5</option>
+                            <option value="4s">iPhone 4s</option>
+                            <option value="galaxy">Samsung Galaxy</option>
+                            <option value="other">Other</option>
+                        </select> 
+                    </div>
+                </div>
+                <div class="check">   
+                    <div>
+                        <label for="used">Used</label>
+                        <input type="checkbox" name="used" class="condition">
+                    </div>
+                    <div>
+                        <label for="new">Brand New</label>
+                        <input type="checkbox" name="new" class="condition">
+                    </div>
+                </div>
+    
+                <div class="inputfield">
+                    <input class="btn" type="submit" value="Predict Price">
+                </div>
+            </div>
+        </form>
+
+        <div class="result">
+            {% if pred_value != 0 %}
+            <p>Predicted Price : LKR {{pred_value}}</p>
+            {% endif %}
+        </div>
+    </div>
+    <script>
+        $('input.condition').on('change', function() {
+            $('input.condition').not(this).prop('checked', false);  
+        });
+    </script>
+</body>
+</html>
